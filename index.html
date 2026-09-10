@@ -418,6 +418,47 @@ section{ padding:100px 0; position:relative; }
 .cta-shell .email-note{ margin-top:20px; font-size:.85rem; color:var(--ink-3); }
 .cta-shell .email-note a{ text-decoration:underline; }
 
+/* ═══ CTA SHELL + PANORAMA MENYATU (tambahan) ═══ */
+.cta-shell{
+  max-width:860px;
+  padding:0 0 56px;
+  overflow:hidden; /* biar panorama ikut kepotong radius atas */
+}
+.cta-body{ padding:36px 48px 0; text-align:center; }
+
+.cta-panorama{
+  position:relative;
+  width:100%;
+  height:360px;
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  overflow:hidden;
+}
+
+/* PAKSA semua elemen internal Marzipano (div & canvas) ikut ukuran wrapper */
+.cta-panorama #contactPano,
+.cta-panorama #contactPano > div,
+.cta-panorama #contactPano canvas{
+  position:absolute !important;
+  top:0 !important; left:0 !important;
+  width:100% !important;
+  height:100% !important;
+}
+
+.cta-pano-hint{
+  position:absolute; bottom:14px; left:50%; transform:translateX(-50%);
+  padding:6px 16px; border-radius:var(--radius-xl);
+  background:rgba(11, 17, 32, 0.322); backdrop-filter:blur(6px);
+  border:1px solid rgba(255,255,255,.15);
+  font-size:.7rem; font-weight:600; letter-spacing:.05em; text-transform:uppercase; color:#fff;
+  pointer-events:none; z-index:5;
+}
+.cta-pano-hint::before{ content:'↔ '; color:var(--blue-bright); }
+
+@media(max-width:768px){
+  .cta-panorama{ height:240px; }
+  .cta-body{ padding:28px 24px 0; }
+}
+
 /* deliverables (apa yang anda dapatkan) */
 .deliver-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:22px; }
 .deliver-card{
@@ -470,7 +511,7 @@ section{ padding:100px 0; position:relative; }
 }
 .pg-panel img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; filter:brightness(.78); }
 .pg-panel-inner{ position:relative; width:100%; padding:16px 18px; background:linear-gradient(to top, rgba(11,17,32,.96) 0%, rgba(11,17,32,.2) 65%, transparent 100%); }
-.pg-panel .pg-tag{ font-size:.68rem; color:var(--blue-bright); letter-spacing:.08em; text-transform:uppercase; font-weight:600; margin-bottom:3px; }
+.pg-panel .pg-tag{display:none; font-size:.68rem; color:var(--blue-bright); letter-spacing:.08em; text-transform:uppercase; font-weight:600; margin-bottom:3px; }
 .pg-panel h3{ font-size:.98rem; font-weight:600; line-height:1.3; color:#fff; }
 .pg-glowcore{
   position:absolute; top:50%; left:50%; width:70px; height:70px; margin:-35px 0 0 -35px; border-radius:50%;
@@ -912,7 +953,7 @@ section{ padding:100px 0; position:relative; }
               <span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span>
             </div>
            </div>
-           <p class="testimonial-text">My laptop isn't powerful enough to render on its own, so it was a huge help being able to hand everything over to Crealiva. The result stayed sharp and realistic even from the minimal brief I gave. Highly recommended for anyone with hardware limitations like mine.</p>
+           <p class="testimonial-text">I'm happy with the results, the work was done quickly and the service was friendly. Thanks for the help.</p>
          </div>
         </div>
         <div class="testimonial-card glass">
@@ -953,15 +994,26 @@ section{ padding:100px 0; position:relative; }
 <section id="kontak" class="section-alt section-edge-top">
   <div class="container">
     <div class="cta-shell glass">
-      <h2 class="section-title2" style="margin-bottom:0;">
-        <span class="main">Let's</span>
-        <span class="accent">Make It!</span>
-      </h2>
-      <p class="lead">Ready to see your property design in 3D? Chat with us directly for a free consultation.</p>
-      <a class="cta-button" href="https://wa.me/6287860382265?text=Hi%20Crealiva%2C%20I%27m%20interested%20in%20your%203D%20Visualization%20service" target="_blank" rel="noopener">
-        Chat Now →
-      </a>
-      <p class="email-note">Or send an email to <a href="mailto:crealiva.business@gmail.com">crealiva.business@gmail.com</a></p>
+
+      <!-- ═══ PANORAMA MENYATU DENGAN CARD ═══ -->
+      <div class="cta-panorama">
+        <div id="contactPano"></div>
+        <span class="cta-pano-hint">360°</span>
+      </div>
+
+      <!-- ═══ KONTEN ASLI, DIBUNGKUS DIV BARU ═══ -->
+      <div class="cta-body">
+        <h2 class="section-title2" style="margin-bottom:0;">
+          <span class="main">Let's</span>
+          <span class="accent">Make It!</span>
+        </h2>
+        <p class="lead">Ready to see your property design in 3D? Chat with us directly for a free consultation.</p>
+        <a class="cta-button" href="https://wa.me/6287860382265?text=Hi%20Crealiva%2C%20I%27m%20interested%20in%20your%203D%20Visualization%20service" target="_blank" rel="noopener">
+          Chat Now →
+        </a>
+        <p class="email-note">Or send an email to <a href="mailto:crealiva.business@gmail.com">crealiva.business@gmail.com</a></p>
+      </div>
+
     </div>
   </div>
 </section>
@@ -1013,16 +1065,35 @@ section{ padding:100px 0; position:relative; }
 
 <script>
 (function(){
-  var works = [
-    { tag:'3D Visualization', title:'Rental Office Building', img: 'https://crealivaportfolio.github.io/Gedung%20Vincent%201.jpg' },
-    { tag:'Architectural VIZ', title:"Gideon's Project", img: 'https://crealivaportfolio.github.io/Cover%20Project/covergideon3dv.png' },
-    { tag:'3D Render', title:'Poliklinik', img: 'https://crealivaportfolio.github.io/Cover%20Project/ensrenindah.jpg' },
-    { tag:'Interior VIZ', title:"Azzhura's Project", img: 'https://crealivaportfolio.github.io/Cover%20Project/coverazhura3dv.png' },
-    { tag:'3D Visualization', title:'Interior Office', img: 'https://crealivaportfolio.github.io/Cover%20Project/covermahmud3dm%26v.jpg' },
-    { tag:'3D Render', title:'Cluster Housing', img: 'https://crealivaportfolio.github.io/cluster3dv.png' },
-    { tag:'3D Render', title:'Office Interior', img: 'https://crealivaportfolio.github.io/office3dv2.png' },
-    { tag:'3D Render', title:'Salsa Residence', img: 'https://crealivaportfolio.github.io/salsa3dv.png' }
-  ];
+var works = [
+  { tag:'3D Visualization', title:'Rental Office Building', img: 'https://crealivaportfolio.github.io/Gedung%20Vincent%201.jpg' },
+  { tag:'3D Visualization', title:'Rental Office Building', img: 'https://crealivaportfolio.github.io/Kak%20Vincent/Gedung%20Vincent%202.jpg' },
+  { tag:'3D Visualization', title:'Rental Office Building', img: 'https://crealivaportfolio.github.io/Kak%20Vincent/Gedung%20Vincent%203.jpg' },
+  { tag:'Architectural VIZ', title:"PLN Building", img: 'PLN Calibration Room.jpg' },
+  { tag:'Architectural VIZ', title:"Gideon's Project", img: 'https://crealivaportfolio.github.io/gideon3dv/gideon3dv1.png' },
+  { tag:'Architectural VIZ', title:"Chiara's Project", img: 'Chiara-Project.jpg' },
+  { tag:'3D Render', title:'Poliklinik', img: 'https://crealivaportfolio.github.io/Cover%20Project/ensrenindah.jpg' },
+  { tag:'3D Render', title:'Poliklinik', img: 'https://crealivaportfolio.github.io/poliklinik3dv/poliklinik3dv1.png' },
+  { tag:'3D Render', title:'Bamboo Architecture Modelling & Rendering', img: 'Bamboo Architecture.jpg' },
+  { tag:'Interior VIZ', title:"Exterior Visualization", img: 'Exterior Building Render.jpg' },
+  { tag:'Interior VIZ', title:"Salsa's Project", img: 'Salsa render.jpg' },
+  { tag:'Interior VIZ', title:"Azzhura's Project", img: 'https://crealivaportfolio.github.io/azhura3dv/Azhura3dv2.png' },
+  { tag:'3D Visualization', title:"Soraya's Project", img: 'Soraya-Project.jpg' },
+  { tag:'3D Visualization', title:'Ruko Render', img: 'Ruko Render.jpg' },
+  { tag:'3D Visualization', title:'Interior Office', img: 'https://crealivaportfolio.github.io/mahmud3dm%26v/mahmud3dm%26v%20ens%201.png' },
+  { tag:'3D Render', title:'Cluster Housing', img: 'https://crealivaportfolio.github.io/cluster3dv.png' },
+  { tag:'3D Render', title:'Office Interior', img: 'https://crealivaportfolio.github.io/office3dv2.png' },
+  { tag:'3D Render', title:'Billiard Interior', img: 'billiard render.jpg' },
+  { tag:'3D Model & Render', title:'Hall Reading Render', img: 'hall reading render.jpg' },
+  { tag:'3D Model & Render', title:'Bedroom Interior', img: 'https://crealivaportfolio.github.io/bedroomj3dm%26v.png' },
+  { tag:'3D Render', title:"Maria's Project", img: "Maria's render 3.jpg" },
+  { tag:'Marketplace Design', title:"Mayenda's Project", img: 'after render edited.jpg' },
+  { tag:'Marketplace Design', title:'Tenant Shop Render', img: 'shoping tenant render 1.jpg' },
+  { tag:'Poster Design', title:"Chiara's Project", img: 'Chiara-Project 2.jpg' },
+  { tag:'Packaging Design', title:'Bedroom Interior Render 1', img: 'Bedroom Render 1.jpg' },
+  { tag:'Packaging Design', title:'Bedroom Interior Render 2', img: 'Bedroom Render 2.jpg' },
+  { tag:'Layout Design', title:"Onit's Project", img: "Onit's Project.jpg" }
+];
 
   var cylinder = document.getElementById('pgCylinder');
   var stage = document.getElementById('pgStage');
@@ -1371,6 +1442,58 @@ revealEls.forEach(function(el){ observer.observe(el); });
       toggle.setAttribute('aria-expanded', 'false');
     });
   });
+})();
+</script>
+
+<script src="https://unpkg.com/marzipano@0.10.2/dist/marzipano.js"></script>
+
+<script>
+(function(){
+  var wrap = document.querySelector('.cta-panorama');
+  var el = document.getElementById('contactPano');
+  if(!el || !wrap) return;
+
+  var mob = window.innerWidth < 768;
+  var v = new Marzipano.Viewer(el, { controls:{ mouseViewMode:'drag' } });
+
+  // GANTI URL INI dengan panorama kamu sendiri
+  var src = Marzipano.ImageUrlSource.fromString("https://raw.githubusercontent.com/CrealivaBusiness/CrealivaBusiness.github.io/main/Panoramawcr.jpg");
+
+  var geo = new Marzipano.EquirectGeometry([{ width:4000 }]);
+  var lim = Marzipano.RectilinearView.limit.traditional(1024, Math.PI);
+  var view = new Marzipano.RectilinearView({ yaw:0, pitch:0, fov: mob ? Math.PI/8 : Math.PI/1.5 }, lim);
+  v.createScene({ source:src, geometry:geo, view:view }).switchTo();
+
+  /* ── FIX: paksa Marzipano ukur ulang ukuran container ── */
+  function forceResize(){ v.updateSize(); }
+  forceResize();
+  window.addEventListener('load', forceResize);
+  setTimeout(forceResize, 300);
+  setTimeout(forceResize, 1000);
+  window.addEventListener('resize', forceResize);
+
+  // Kalau card pakai animasi reveal (opacity/transform), pantau perubahan ukuran wrapper
+  if('ResizeObserver' in window){
+    var ro = new ResizeObserver(function(){ forceResize(); });
+    ro.observe(wrap);
+  }
+
+  var MIN=Math.PI/5, MAX=Math.PI/2;
+  el.addEventListener('wheel', function(e){ e.preventDefault(); view.setFov(Math.max(MIN,Math.min(MAX,view.fov()+e.deltaY*.0001))); }, {passive:false});
+
+  var d0=null;
+  el.addEventListener('touchstart', function(e){ if(e.touches.length===2) d0=Math.hypot(e.touches[0].pageX-e.touches[1].pageX,e.touches[0].pageY-e.touches[1].pageY); }, {passive:false});
+  el.addEventListener('touchmove', function(e){ if(e.touches.length===2&&d0){ e.preventDefault(); var d1=Math.hypot(e.touches[0].pageX-e.touches[1].pageX,e.touches[0].pageY-e.touches[1].pageY); view.setFov(Math.max(MIN,Math.min(MAX,view.fov()+(d0-d1)*.0003))); d0=d1; } }, {passive:false});
+
+  var isInteracting=false, idleTimer=null, ROTATE_SPEED=0.0009, IDLE_DELAY=2000;
+  function startIdleTimer(){ clearTimeout(idleTimer); idleTimer=setTimeout(function(){ isInteracting=false; }, IDLE_DELAY); }
+  ['mousedown','touchstart','wheel'].forEach(function(evt){ el.addEventListener(evt, function(){ isInteracting=true; startIdleTimer(); }, {passive:true}); });
+  ['mousemove','touchmove'].forEach(function(evt){ el.addEventListener(evt, function(){ if(isInteracting) startIdleTimer(); }, {passive:true}); });
+  ['mouseup','touchend'].forEach(function(evt){ el.addEventListener(evt, function(){ startIdleTimer(); }, {passive:true}); });
+  (function autoRotate(){
+    if(!isInteracting){ var p=view.parameters(); view.setParameters({ yaw:p.yaw+ROTATE_SPEED, pitch:p.pitch }); }
+    requestAnimationFrame(autoRotate);
+  })();
 })();
 </script>
 
