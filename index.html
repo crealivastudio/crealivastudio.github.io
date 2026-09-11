@@ -1473,7 +1473,6 @@ revealEls.forEach(function(el){ observer.observe(el); });
 
 <script>
 document.addEventListener('DOMContentLoaded', function(){
-(function(){
   var wrap = document.querySelector('.cta-panorama');
   var el = document.getElementById('contactPano');
   if(!el || !wrap) return;
@@ -1481,7 +1480,6 @@ document.addEventListener('DOMContentLoaded', function(){
   var mob = window.innerWidth < 768;
   var v = new Marzipano.Viewer(el, { controls:{ mouseViewMode:'drag' } });
 
-  // GANTI URL INI dengan panorama kamu sendiri
   var src = Marzipano.ImageUrlSource.fromString("https://raw.githubusercontent.com/CrealivaBusiness/CrealivaBusiness.github.io/main/Panoramawcr.jpg");
 
   var geo = new Marzipano.EquirectGeometry([{ width:4000 }]);
@@ -1489,7 +1487,6 @@ document.addEventListener('DOMContentLoaded', function(){
   var view = new Marzipano.RectilinearView({ yaw:0, pitch:0, fov: mob ? Math.PI/8 : Math.PI/1.5 }, lim);
   v.createScene({ source:src, geometry:geo, view:view }).switchTo();
 
-  /* ── FIX: paksa Marzipano ukur ulang ukuran container ── */
   function forceResize(){ v.updateSize(); }
   forceResize();
   window.addEventListener('load', forceResize);
@@ -1497,7 +1494,6 @@ document.addEventListener('DOMContentLoaded', function(){
   setTimeout(forceResize, 1000);
   window.addEventListener('resize', forceResize);
 
-  // Kalau card pakai animasi reveal (opacity/transform), pantau perubahan ukuran wrapper
   if('ResizeObserver' in window){
     var ro = new ResizeObserver(function(){ forceResize(); });
     ro.observe(wrap);
@@ -1518,7 +1514,7 @@ document.addEventListener('DOMContentLoaded', function(){
   (function autoRotate(){
     if(!isInteracting){ var p=view.parameters(); view.setParameters({ yaw:p.yaw+ROTATE_SPEED, pitch:p.pitch }); }
     requestAnimationFrame(autoRotate);
-})();
+  })();
 });
 </script>
 
