@@ -27,9 +27,11 @@ src="https://www.facebook.com/tr?id=1135697555789915&ev=PageView&noscript=1"
 <!-- End Meta Pixel Code -->
 <title>SketchUp Modelling & Rendering — Crealiva</title>
 <meta name="description" content="3D Modeling & Visualization services (SketchUp/Enscape) for properties — helping clients see the finished building before it's built. Fast, detailed, and realistic.">
+<link rel="preload" as="image" href="after render edited.webp" fetchpriority="high">
 <link rel="icon" href="New Favicon 2.ico" type="image/x-icon">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://crealivaportfolio.github.io">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300&family=Kalam:wght@400;700&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -749,9 +751,9 @@ section{ padding:100px 0; position:relative; }
     </div>
     <div class="hero-visual">
       <div class="compare-slider" id="compareSlider">
-        <img class="compare-img compare-after" src="after render edited.jpg" alt="Final Render Result">
+        <img class="compare-img compare-after" src="after render edited.webp" alt="Final Render Result" fetchpriority="high">
         <div class="compare-before-wrap" id="compareBeforeWrap">
-          <img class="compare-img compare-before" id="compareBeforeImg" src="before render.jpg" alt="SketchUp Viewport View">
+          <img class="compare-img compare-before" id="compareBeforeImg" src="before render.webp" alt="SketchUp Viewport View">
         </div>
         <div class="compare-divider" id="compareDivider">
           <div class="compare-handle" id="compareHandle">
@@ -1467,9 +1469,9 @@ revealEls.forEach(function(el){ observer.observe(el); });
 })();
 </script>
 
-<script src="https://unpkg.com/marzipano@0.10.2/dist/marzipano.js"></script>
+<script src="https://unpkg.com/marzipano@0.10.2/dist/marzipano.js" defer></script>
 
-<script>
+<script defer>
 (function(){
   var wrap = document.querySelector('.cta-panorama');
   var el = document.getElementById('contactPano');
