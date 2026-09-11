@@ -1471,7 +1471,8 @@ revealEls.forEach(function(el){ observer.observe(el); });
 
 <script src="https://unpkg.com/marzipano@0.10.2/dist/marzipano.js" defer></script>
 
-<script defer>
+<script>
+document.addEventListener('DOMContentLoaded', function(){
 (function(){
   var wrap = document.querySelector('.cta-panorama');
   var el = document.getElementById('contactPano');
@@ -1517,8 +1518,8 @@ revealEls.forEach(function(el){ observer.observe(el); });
   (function autoRotate(){
     if(!isInteracting){ var p=view.parameters(); view.setParameters({ yaw:p.yaw+ROTATE_SPEED, pitch:p.pitch }); }
     requestAnimationFrame(autoRotate);
-  })();
 })();
+});
 </script>
 
 </body>
